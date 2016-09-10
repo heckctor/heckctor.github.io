@@ -4,7 +4,11 @@ $fuentePrimaria:'Open Sans', sans-serif;
 $fuenteSecundaria:'Open Sans', sans-serif;
 $fuenteTitulos:'Open Sans', sans-serif;
 $fuenteSubitulos:'Open Sans', sans-serif;
-$colorTexto:#3D3D3D;
+$colorTexto:$concreto;
 $colorPrimario:#2CB9FF;
 $colorSecundario:darken($colorPrimario,10%);
 $rutaImg:'../img';
+$tablet:1024px;
+$movil:640px;
+$laptop:1366px;
+$pc:1680px

@@ -31,7 +31,7 @@ body {
     height: 100%;
     min-height: 100%;
     color:$colorTexto;
-    background: darken($asfalto,3%);
+    background: url('#{$rutaImg}/fondo.jpg') $asfalto  no-repeat;
    
 }
 a {
@@ -112,7 +112,7 @@ a:hover {
               padding: .5em;
               position: absolute;
               top:180px;
-              background:transparentize($negro,.5);
+              background:transparentize($negro,.1);
               @include transicion($duracion:1s);
             }
           }
@@ -123,4 +123,4 @@ a:hover {
 
 
 
-//url('#{$rutaImg}/ejemplo.png')
+

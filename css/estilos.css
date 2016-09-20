@@ -261,7 +261,7 @@ body {
   height: 100%;
   min-height: 100%;
   color: #95a5a6;
-  background: #1c2937;
+  background: url("../img/fondo.jpg") #102d3f no-repeat;
 }
 
 a {
@@ -295,8 +295,8 @@ a:hover {
 
 #contenedor .contenido .avatar {
   border-radius: 50%;
-  background: #2a3e52;
-  border: solid 1px #324a63;
+  background: #153c53;
+  border: solid 1px #1a4a68;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
   padding: 7px;
   width: 180px;
@@ -309,7 +309,7 @@ a:hover {
 #contenedor .contenido .avatar img {
   width: 100%;
   border-radius: 50%;
-  box-shadow: 5px 5px 5px 3px #10171f;
+  box-shadow: 5px 5px 5px 3px #061016;
 }
 
 #contenedor .contenido .portafolio {
@@ -408,7 +408,7 @@ a:hover {
   padding: .5em;
   position: absolute;
   top: 180px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.9);
   transition-delay: 0s;
   transition-duration: 1s;
   transition-property: all;

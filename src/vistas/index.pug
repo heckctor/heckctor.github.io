@@ -1,0 +1,17 @@
+-var selected = 'Inicio'; //default
+include bloques/comun/var_globales.pug
+- var titulo = "Héctor Peña - Desarrollador web"
+doctype html
+html.no-js(lang="es")
+  head
+    include bloques/comun/head.pug
+  body.inicio
+    section#contenedor
+      header#header-principal
+        include bloques/comun/header.pug
+      .contenido
+        include bloques/secciones/home.pug
+    section.clear
+    footer#footer
+          include bloques/comun/footer.pug
+  include bloques/comun/scripts.pug

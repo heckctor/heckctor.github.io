@@ -1,0 +1,10 @@
+$cssCore: false;
+$cssHelpers: false;
+$devMode: false;
+@import 'componentes/index';
+
+body{
+    background: url('#{$rutaImg}fondo.jpg');
+    background-size: cover;
+    color:$blanco;
+}

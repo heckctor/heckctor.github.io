@@ -5,15 +5,32 @@ $devMode: false;
 
 $progreso:#12e5c4;
 
-@import url('https://fonts.googleapis.com/css?family=Hind');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+
 
 body{
     background: url('#{$rutaImg}fondo.jpg') fixed;
     background-size: cover;
     color:$blanco;
     text-shadow: transparentize($negro,.15) 0 0 5px;
-    font-family: 'Hind', sans-serif;
-    font-size: 18px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 17px;
+    font-weight: normal;
+}
+a, a:visited{
+    color:$blanco;
+    font-style: italic;
+}
+.social{
+    margin-top:20px;
+    i{
+        margin-right: 10px;
+        font-size:22px;
+    }
+}
+.centrado{
+    text-align: center;
+    margin-top:30px;
 }
 .navegacion{
     margin-top:1em;
@@ -50,19 +67,27 @@ body{
 }
 .bio{
     @include edContainer;
-    margin-top:100px;
+    background: transparentize($negro, .5);
+    padding: 1em;
+    border-radius: 8px;
+    margin-top:30px;
     &__contenido{
         @include edContainer;
         @include edItem(100,60);
         &__avatar{
             @include edItem(100,35);
             text-align: center;
+            display:flex;
+            justify-content: center;
+            align-items:center;
             .foto{
                 width:180px;
                 height: 180px;
                 border-radius: 50%;
                 overflow: hidden;
                 margin: auto;
+                margin-bottom:15px;
+                border: solid 10px transparentize($negro,.5);
             }
         }
         &__info{

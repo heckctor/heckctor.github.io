@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
-@import url("https://fonts.googleapis.com/css?family=Hind");
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans");
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -278,8 +278,23 @@ body {
   background-size: cover;
   color: white;
   text-shadow: rgba(0, 0, 0, 0.85) 0 0 5px;
-  font-family: 'Hind', sans-serif;
-  font-size: 18px; }
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 17px;
+  font-weight: normal; }
+
+a, a:visited {
+  color: white;
+  font-style: italic; }
+
+.social {
+  margin-top: 20px; }
+  .social i {
+    margin-right: 10px;
+    font-size: 22px; }
+
+.centrado {
+  text-align: center;
+  margin-top: 30px; }
 
 .navegacion {
   margin-top: 1em; }
@@ -320,7 +335,10 @@ body {
         transition-timing-function: ease; }
 
 .bio {
-  margin-top: 100px; }
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1em;
+  border-radius: 8px;
+  margin-top: 30px; }
   .bio__contenido {
     width: 100%; }
     @media screen and (min-width: 640px) {
@@ -328,7 +346,10 @@ body {
         width: 60%; } }
     .bio__contenido__avatar {
       width: 100%;
-      text-align: center; }
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
       @media screen and (min-width: 640px) {
         .bio__contenido__avatar {
           width: 35%; } }
@@ -337,7 +358,9 @@ body {
         height: 180px;
         border-radius: 50%;
         overflow: hidden;
-        margin: auto; }
+        margin: auto;
+        margin-bottom: 15px;
+        border: solid 10px rgba(0, 0, 0, 0.5); }
     .bio__contenido__info {
       width: 100%;
       line-height: 30px; }

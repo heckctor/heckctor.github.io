@@ -361,6 +361,17 @@ a, a:visited {
         margin: auto;
         margin-bottom: 15px;
         border: solid 10px rgba(0, 0, 0, 0.5); }
+      .bio__contenido__avatar .social i {
+        transition-delay: 0s;
+        transition-duration: 0.5s;
+        transition-property: all;
+        transition-timing-function: ease; }
+        .bio__contenido__avatar .social i:hover {
+          color: #12e5c4;
+          transition-delay: 0s;
+          transition-duration: 0.5s;
+          transition-property: all;
+          transition-timing-function: ease; }
     .bio__contenido__info {
       width: 100%;
       line-height: 30px; }

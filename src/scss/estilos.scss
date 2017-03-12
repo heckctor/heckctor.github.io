@@ -89,6 +89,15 @@ a, a:visited{
                 margin-bottom:15px;
                 border: solid 10px transparentize($negro,.5);
             }
+            .social{
+                i{
+                    @include transicion;
+                    &:hover{
+                        color:$progreso;
+                        @include transicion;
+                    }
+                }
+            }
         }
         &__info{
             @include edItem(100,65);

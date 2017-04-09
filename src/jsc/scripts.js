@@ -26,5 +26,8 @@ window.Modernizr=function(e,t,n){function r(e){b.cssText=e}function o(e,t){retur
         ga('create', 'UA-XXXXX-X', 'auto');
         ga('send', 'pageview');
 $(document).ready(function(){
-  console.log('Hola Mundo');
+  $('.plus').click(function(){
+    $('.biografia').toggleClass('toggle-bio');
+    $(this).toggleClass('toggle-plus');
+  });
 });

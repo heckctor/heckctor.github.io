@@ -4,9 +4,9 @@
 
 #contenedor {
     .contenido {
-        max-width: $min-laptop;
-        margin: auto;
+        max-width: $max-laptop;
         min-width: $min-movil;
         padding: 0 .5em;
     }
 }
+

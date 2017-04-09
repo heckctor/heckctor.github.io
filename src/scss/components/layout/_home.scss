@@ -2,5 +2,18 @@
    Layout/Home
    ========================= */
 
-.l-home {
+.contenido{
+    &__lienzo{
+        @include edContainer;
+        max-width:100%;
+        margin:0;
+        &__perfil{
+            @include edItem(100,25);
+            padding: 0;
+        }
+        &__portafolio{
+            @include edItem(100,75);
+            padding: 0;
+        }
+    }
 }

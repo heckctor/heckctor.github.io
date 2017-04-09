@@ -5,12 +5,12 @@
 // ----------------------
 
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-$fuenteGlobal:'Open Sans',sans-serif;
-$fuentePrimaria:'Open Sans',sans-serif;
-$fuenteSecundaria:'Open Sans',sans-serif;
-$fuenteTitulos:'Open Sans',sans-serif;
-$fuenteSubitulos:'Open Sans',sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,900');
+$fuenteGlobal:'Lato', sans-serif;
+$fuentePrimaria:'Lato', sans-serif;
+$fuenteSecundaria:'Lato', sans-serif;
+$fuenteTitulos:'Lato', sans-serif;
+$fuenteSubitulos:'Lato', sans-serif;
 
 // = Colors
 // -----------------------------
@@ -31,7 +31,7 @@ $colorPrimario:$azul;
 $colorSecundario:$verde;
 
 //Elementos genericos
-$tema-generico:true;
+$tema-generico:false;
 $elementos:$azul;
 
 //Path's
@@ -45,9 +45,12 @@ $min-laptop:1280px;
 $max-laptop:1366px;
 $escritorio:1420px;
 
+//***Librerias***//
+@import 'components/vendor/normalize';
 
 // = edGrid config
 // -----------------------------
 $cssCore: false;
 $cssHelpers: false;
 $devMode: false;
+@import 'components/vendor/ed-grid/ed-grid';

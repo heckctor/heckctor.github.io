@@ -321,6 +321,34 @@ body {
   font-family: "Lato", sans-serif;
   position: relative; }
 
+h6 {
+  color: #292d94; }
+
+h5 {
+  color: #292d94; }
+
+h4 {
+  color: #292d94; }
+
+h3 {
+  color: #292d94; }
+
+h2 {
+  color: #292d94; }
+
+h1 {
+  color: #292d94; }
+
+.nombre {
+  color: black;
+  font-weight: normal;
+  margin: 0; }
+
+.subtitulo {
+  font-weight: normal;
+  color: #00a5f4;
+  margin: 0; }
+
 .contenido {
   position: relative;
   margin: auto; }
@@ -378,17 +406,13 @@ body {
       background: url("../images/avatar.jpg");
       background-size: cover;
       border-radius: 50%;
-      border: solid 3px white; }
+      border: solid 3px white;
+      -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5); }
   .card__content {
     padding: 5px; }
     .card__content h2, .card__content h4 {
       text-align: center; }
-    .card__content .social {
-      text-align: center; }
-      .card__content .social i {
-        color: black;
-        margin-right: 5px;
-        font-size: 20px; }
     .card__content h3 {
       font-weight: lighter; }
     .card__content .habilidades .tags {
@@ -414,6 +438,16 @@ body {
     transition-property: all;
     transition-timing-function: ease; }
 
+.social {
+  text-align: center;
+  margin: 10px 0; }
+  .social i {
+    color: black;
+    margin-right: 5px;
+    font-size: 20px; }
+    .social i:hover {
+      color: #00a5f4; }
+
 .trabajos {
   width: 100%;
   padding: 5px;
@@ -437,7 +471,7 @@ body {
 
 .biografia {
   transition: all ease 1.2s;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.6);
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -448,19 +482,32 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column; }
+  @media screen and (max-width: 639px) {
+    .biografia {
+      align-items: flex-end;
+      justify-content: flex-end; } }
   .biografia__contenido {
     width: 80vw;
-    height: 60vh;
-    overflow: scroll; }
-    .biografia__contenido p {
-      font-size: 25px;
-      font-style: italic;
-      font-weight: lighter; }
+    height: 80vh; }
+    @media screen and (max-width: 639px) {
+      .biografia__contenido {
+        padding: 10px;
+        width: 100vw;
+        overflow: scroll; } }
+    @media screen and (min-width: 640px) {
+      .biografia__contenido p {
+        font-size: 25px;
+        font-style: italic;
+        font-weight: lighter; } }
+  @media screen and (min-width: 640px) {
+    .biografia h3 {
+      font-size: 20px; } }
 
 .plus {
   width: 32px;
   height: 32px;
-  position: absolute;
+  position: fixed;
+  border-radius: 50%;
   top: 10px;
   left: 10px;
   z-index: 12;
@@ -477,3 +524,9 @@ body {
 .toggle-plus {
   transform: rotate(45deg);
   transition: all ease-out .5s; }
+
+.centrado {
+  text-align: center; }
+
+.block-body {
+  overflow: hidden; }

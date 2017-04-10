@@ -13,6 +13,22 @@ body{
     font-family: $fuenteGlobal;
     position: relative;
 }
+@for $i from 1 through 6 {
+  h#{7 - $i} {
+    color:$marino;
+  }
+}
+.nombre{
+    color:$negro;
+    font-weight: normal;
+    margin:0;
+}
+.subtitulo{
+    font-weight: normal;
+    color:$cian;
+    margin:0;
+}
+
 .contenido{
     position: relative;
     margin:auto;
@@ -70,6 +86,7 @@ body{
             background-size:cover;
             border-radius: 50%;
             border:solid 3px $blanco;
+            @include sombra;
         }
     }
     &__content{
@@ -77,14 +94,7 @@ body{
         h2,h4{
             text-align: center;
         }
-        .social{
-            text-align: center;
-            i{
-                color:$negro;
-                margin-right: 5px;
-                font-size: 20px;
-            }
-        }
+        
         h3{
            font-weight: lighter;
         }
@@ -116,7 +126,18 @@ body{
         }
     }
 }
-
+.social{
+            text-align: center;
+            margin:10px 0;
+            i{
+                color:$negro;
+                margin-right: 5px;
+                font-size: 20px;
+                &:hover{
+                    color:$cian;
+                }
+            }
+        }
 .trabajos{
     width: 100%;
     padding: 5px;
@@ -129,7 +150,7 @@ body{
 
 .biografia{
     transition: all ease 1.2s;
-    background: transparentize($blanco,.1);
+    background: transparentize($blanco,.4);
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -140,21 +161,38 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    @include to(m){
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
     &__contenido{
         width: 80vw;
-        height: 60vh;
-        overflow: scroll;
-        p{
+        height: 80vh;
+        @include to(m){
+            padding: 10px;
+            width: 100vw;
+            overflow: scroll;
+        }
+        @include from(m){
+            
+            p{
             font-size: 25px;
             font-style: italic;
             font-weight: lighter;
+            }
+        }
+    }
+    h3{
+        @include from(m){
+            font-size: 20px;
         }
     }
 }
 .plus{
     width: 32px;
     height: 32px;
-    position: absolute;
+    position: fixed;
+    border-radius: 50%;
     top:10px;
     left: 10px;
     z-index: 12;
@@ -171,4 +209,10 @@ body{
 .toggle-plus{
     transform: rotate(45deg);
     transition: all ease-out .5s;
+}
+.centrado{
+    text-align:center;
+}
+.block-body{
+    overflow: hidden;
 }

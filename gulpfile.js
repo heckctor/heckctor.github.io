@@ -109,6 +109,7 @@ var jsFiles = [
   'src/js/lib/jquery-2.1.4.min.js', 
   'src/js/lib/modernizr.js', 
   'src/js/lib/prefixfree.min.js', 
+  'src/js/lib/Vague.js', 
   //Codigo del sitio
   'src/js/analytics.js', 
   'src/js/codigo.js'
@@ -125,7 +126,7 @@ gulp.task('concat-js', function() {
 gulp.task('compress-js', function (cb) {
   // the same options as described above 
   var options = {
-    preserveComments: 'license'
+    //preserveComments: 'license'
   };
  
   pump([

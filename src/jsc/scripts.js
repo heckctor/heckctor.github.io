@@ -12,6 +12,320 @@ window.Modernizr=function(e,t,n){function r(e){b.cssText=e}function o(e,t){retur
  * MIT license
  */
 !function(){function e(e,t){return[].slice.call((t||document).querySelectorAll(e))}if(window.addEventListener){var t=window.StyleFix={link:function(e){try{if("stylesheet"!==e.rel||e.hasAttribute("data-noprefix"))return}catch(e){return}var r,n=e.href||e.getAttribute("data-href"),i=n.replace(/[^\/]+$/,""),a=(/^[a-z]{3,10}:/.exec(i)||[""])[0],o=(/^[a-z]{3,10}:\/\/[^\/]+/.exec(i)||[""])[0],s=/^([^?]*)\??/.exec(n)[1],l=e.parentNode,u=new XMLHttpRequest;u.onreadystatechange=function(){4===u.readyState&&r()},r=function(){var r=u.responseText;if(r&&e.parentNode&&(!u.status||400>u.status||600<u.status)){if(r=t.fix(r,!0,e),i)var r=r.replace(/url\(\s*?((?:"|')?)(.+?)\1\s*?\)/gi,function(e,t,r){return/^([a-z]{3,10}:|#)/i.test(r)?e:/^\/\//.test(r)?'url("'+a+r+'")':/^\//.test(r)?'url("'+o+r+'")':/^\?/.test(r)?'url("'+s+r+'")':'url("'+i+r+'")'}),n=i.replace(/([\\\^\$*+[\]?{}.=!:(|)])/g,"\\$1"),r=r.replace(RegExp("\\b(behavior:\\s*?url\\('?\"?)"+n,"gi"),"$1");n=document.createElement("style"),n.textContent=r,n.media=e.media,n.disabled=e.disabled,n.setAttribute("data-href",e.getAttribute("href")),l.insertBefore(n,e),l.removeChild(e),n.media=e.media}};try{u.open("GET",n),u.send(null)}catch(e){"undefined"!=typeof XDomainRequest&&(u=new XDomainRequest,u.onerror=u.onprogress=function(){},u.onload=r,u.open("GET",n),u.send(null))}e.setAttribute("data-inprogress","")},styleElement:function(e){if(!e.hasAttribute("data-noprefix")){var r=e.disabled;e.textContent=t.fix(e.textContent,!0,e),e.disabled=r}},styleAttribute:function(e){var r=e.getAttribute("style"),r=t.fix(r,!1,e);e.setAttribute("style",r)},process:function(){e('link[rel="stylesheet"]:not([data-inprogress])').forEach(StyleFix.link),e("style").forEach(StyleFix.styleElement),e("[style]").forEach(StyleFix.styleAttribute)},register:function(e,r){(t.fixers=t.fixers||[]).splice(void 0===r?t.fixers.length:r,0,e)},fix:function(e,r,n){for(var i=0;i<t.fixers.length;i++)e=t.fixers[i](e,r,n)||e;return e},camelCase:function(e){return e.replace(/-([a-z])/g,function(e,t){return t.toUpperCase()}).replace("-","")},deCamelCase:function(e){return e.replace(/[A-Z]/g,function(e){return"-"+e.toLowerCase()})}};!function(){setTimeout(function(){e('link[rel="stylesheet"]').forEach(StyleFix.link)},10),document.addEventListener("DOMContentLoaded",StyleFix.process,!1)}()}}(),function(e){function t(e,t,n,i,a){return e=r[e],e.length&&(e=RegExp(t+"("+e.join("|")+")"+n,"gi"),a=a.replace(e,i)),a}if(window.StyleFix&&window.getComputedStyle){var r=window.PrefixFree={prefixCSS:function(e,n,i){var a=r.prefix;if(-1<r.functions.indexOf("linear-gradient")&&(e=e.replace(/(\s|:|,)(repeating-)?linear-gradient\(\s*(-?\d*\.?\d*)deg/gi,function(e,t,r,n){return t+(r||"")+"linear-gradient("+(90-n)+"deg"})),e=t("functions","(\\s|:|,)","\\s*\\(","$1"+a+"$2(",e),e=t("keywords","(\\s|:)","(\\s|;|\\}|$)","$1"+a+"$2$3",e),e=t("properties","(^|\\{|\\s|;)","\\s*:","$1"+a+"$2:",e),r.properties.length){var o=RegExp("\\b("+r.properties.join("|")+")(?!:)","gi");e=t("valueProperties","\\b",":(.+?);",function(e){return e.replace(o,a+"$1")},e)}return n&&(e=t("selectors","","\\b",r.prefixSelector,e),e=t("atrules","@","\\b","@"+a+"$1",e)),e=e.replace(RegExp("-"+a,"g"),"-"),e=e.replace(/-\*-(?=[a-z]+)/gi,r.prefix)},property:function(e){return(0<=r.properties.indexOf(e)?r.prefix:"")+e},value:function(e,n){return e=t("functions","(^|\\s|,)","\\s*\\(","$1"+r.prefix+"$2(",e),e=t("keywords","(^|\\s)","(\\s|$)","$1"+r.prefix+"$2$3",e),0<=r.valueProperties.indexOf(n)&&(e=t("properties","(^|\\s|,)","($|\\s|,)","$1"+r.prefix+"$2$3",e)),e},prefixSelector:function(e){return e.replace(/^:{1,2}/,function(e){return e+r.prefix})},prefixProperty:function(e,t){var n=r.prefix+e;return t?StyleFix.camelCase(n):n}};!function(){var e={},t=[],n=getComputedStyle(document.documentElement,null),i=document.createElement("div").style,a=function(r){if("-"===r.charAt(0)){t.push(r),r=r.split("-");var n=r[1];for(e[n]=++e[n]||1;3<r.length;)r.pop(),n=r.join("-"),StyleFix.camelCase(n)in i&&-1===t.indexOf(n)&&t.push(n)}};if(0<n.length)for(var o=0;o<n.length;o++)a(n[o]);else for(var s in n)a(StyleFix.deCamelCase(s));var l,u,o=0;for(u in e)n=e[u],o<n&&(l=u,o=n);for(r.prefix="-"+l+"-",r.Prefix=StyleFix.camelCase(r.prefix),r.properties=[],o=0;o<t.length;o++)s=t[o],0===s.indexOf(r.prefix)&&(l=s.slice(r.prefix.length),StyleFix.camelCase(l)in i||r.properties.push(l));!("Ms"!=r.Prefix||"transform"in i||"MsTransform"in i)&&"msTransform"in i&&r.properties.push("transform","transform-origin"),r.properties.sort()}(),function(){function e(e,t){return a[t]="",a[t]=e,!!a[t]}var t={"linear-gradient":{property:"backgroundImage",params:"red, teal"},calc:{property:"width",params:"1px + 5%"},element:{property:"backgroundImage",params:"#foo"},"cross-fade":{property:"backgroundImage",params:"url(a.png), url(b.png), 50%"}};t["repeating-linear-gradient"]=t["repeating-radial-gradient"]=t["radial-gradient"]=t["linear-gradient"];var n={initial:"color","zoom-in":"cursor","zoom-out":"cursor",box:"display",flexbox:"display","inline-flexbox":"display",flex:"display","inline-flex":"display",grid:"display","inline-grid":"display","max-content":"width","min-content":"width","fit-content":"width","fill-available":"width"};r.functions=[],r.keywords=[];var i,a=document.createElement("div").style;for(i in t){var o=t[i],s=o.property,o=i+"("+o.params+")";!e(o,s)&&e(r.prefix+o,s)&&r.functions.push(i)}for(var l in n)s=n[l],!e(l,s)&&e(r.prefix+l,s)&&r.keywords.push(l)}(),function(){function t(e){return o.textContent=e+"{}",!!o.sheet.cssRules.length}var n={":read-only":null,":read-write":null,":any-link":null,"::selection":null},i={keyframes:"name",viewport:null,document:'regexp(".")'};r.selectors=[],r.atrules=[];var a,o=e.appendChild(document.createElement("style"));for(a in n){var s=a+(n[a]?"("+n[a]+")":"");!t(s)&&t(r.prefixSelector(s))&&r.selectors.push(a)}for(var l in i)s=l+" "+(i[l]||""),!t("@"+s)&&t("@"+r.prefix+s)&&r.atrules.push(l);e.removeChild(o)}(),r.valueProperties=["transition","transition-property"],e.className+=" "+r.prefix,StyleFix.register(r.prefixCSS)}}(document.documentElement);
+/**
+ *
+ * Version: 0.0.6
+ * Author: Gianluca Guarini
+ * Contact: gianluca.guarini@gmail.com
+ * Website: http://www.gianlucaguarini.com/
+ * Twitter: @gianlucaguarini
+ *
+ * Copyright (c) Gianluca Guarini
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ **/
+
+
+(function(window, document, $) {
+  'use strict';
+
+  // Plugin private cache
+  // static vars
+  var cache = {
+    filterId: 0
+  },
+    $body = $('body');
+
+  var Vague = function(elm, customOptions) {
+    // Default options
+    var defaultOptions = {
+      intensity: 5,
+      forceSVGUrl: false,
+      animationOptions: {
+        duration: 1000,
+        easing: 'linear'
+      }
+    },
+      // extend the default options with the ones passed to the plugin
+      options = $.extend(defaultOptions, customOptions),
+
+      /*
+       *
+       * Helpers
+       *
+       */
+
+      _browserPrefixes = ' -webkit- -moz- -o- -ms- '.split(' '),
+      _cssPrefixString = {},
+      _cssPrefix = function(property) {
+        if (_cssPrefixString[property] || _cssPrefixString[property] === '') return _cssPrefixString[property] + property;
+        var e = document.createElement('div');
+        var prefixes = ['', 'Moz', 'Webkit', 'O', 'ms', 'Khtml']; // Various supports...
+        for (var i in prefixes) {
+          if (typeof e.style[prefixes[i] + property] !== 'undefined') {
+            _cssPrefixString[property] = prefixes[i];
+            return prefixes[i] + property;
+          }
+        }
+        return property.toLowerCase();
+      },
+      // https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css-filters.js
+      _support = {
+        cssfilters: function() {
+          var el = document.createElement('div');
+          el.style.cssText = _browserPrefixes.join('filter' + ':blur(2px); ');
+          return !!el.style.length && ((document.documentMode === undefined || document.documentMode > 9));
+        }(),
+
+        // https://github.com/Modernizr/Modernizr/blob/master/feature-detects/svg-filters.js
+        svgfilters: function() {
+          var result = false;
+          try {
+            result = typeof SVGFEColorMatrixElement !== undefined &&
+              SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_SATURATE == 2;
+          } catch (e) {}
+          return result;
+        }()
+      },
+
+      /*
+       *
+       * PRIVATE VARS
+       *
+       */
+
+      _blurred = false,
+      // cache the right prefixed css filter property
+      _cssFilterProp = _cssPrefix('Filter'),
+      _svgGaussianFilter,
+      _filterId,
+      // to cache the jquery animation instance
+      _animation,
+
+      /*
+       *
+       * PRIVATE METHODS
+       *
+       */
+
+      /**
+       * Create any svg element
+       * @param  { String } tagName: svg tag name
+       * @return { SVG Node }
+       */
+
+      _createSvgElement = function(tagName) {
+        return document.createElementNS('http://www.w3.org/2000/svg', tagName);
+      },
+
+      /**
+       *
+       * Inject the svg tag into the DOM
+       * we will use it only if the css filters are not supported
+       *
+       */
+
+      _appendSVGFilter = function() {
+        // create the svg and the filter tags
+        var svg = _createSvgElement('svg'),
+          filter = _createSvgElement('filter');
+
+        // cache the feGaussianBlur tag and make it available
+        // outside of this function to easily update the blur intensity
+        _svgGaussianFilter = _createSvgElement('feGaussianBlur');
+
+        // hide the svg tag
+        // we don't want to see it into the DOM!
+        svg.setAttribute('style', 'position:absolute');
+        svg.setAttribute('width', '0');
+        svg.setAttribute('height', '0');
+        // set the id that will be used as link between the DOM element to blur and the svg just created
+        filter.setAttribute('id', 'blur-effect-id-' + cache.filterId);
+
+        filter.appendChild(_svgGaussianFilter);
+        svg.appendChild(filter);
+        // append the svg into the body
+        $body.append(svg);
+
+      };
+
+    /*
+     *
+     * PUBLIC VARS
+     *
+     */
+
+    // cache the DOM element to blur
+    this.$elm = elm instanceof $ ? elm : $(elm);
+
+
+    /*
+     *
+     * PUBLIC METHODS
+     *
+     */
+
+    /**
+     *
+     * Initialize the plugin creating a new svg if necessary
+     *
+     */
+
+    this.init = function() {
+      // checking the css filter feature
+      if (_support.svgfilters) {
+        _appendSVGFilter();
+      }
+      // cache the filter id
+      _filterId = cache.filterId;
+      // increment the filter id static var
+      cache.filterId++;
+
+      return this;
+
+    };
+
+    /**
+     *
+     * Blur the DOM element selected
+     *
+     */
+
+    this.blur = function() {
+
+      var cssFilterValue,
+        // variables needed to force the svg filter URL
+        loc = window.location,
+        svgUrl = options.forceSVGUrl ? loc.protocol + '//' + loc.host + loc.pathname + loc.search : '';
+
+      // use the css filters if supported
+      if (_support.cssfilters) {
+        cssFilterValue = 'blur(' + options.intensity + 'px)';
+        // .. or use the svg filters
+      } else if (_support.svgfilters) {
+        // update the svg stdDeviation tag to set up the blur intensity
+        _svgGaussianFilter.setAttribute('stdDeviation', options.intensity);
+        cssFilterValue = 'url(' + svgUrl + '#blur-effect-id-' + _filterId + ')';
+      } else {
+        // .. use the IE css filters
+        cssFilterValue = 'progid:DXImageTransform.Microsoft.Blur(pixelradius=' + options.intensity + ')';
+      }
+
+      // update the DOM element css
+      this.$elm[0].style[_cssFilterProp] = cssFilterValue;
+      // set the _blurred internal var to true to cache the element current status
+      _blurred = true;
+
+      return this;
+    };
+
+
+    /**
+     * Animate the blur intensity
+     * @param  { Int } newIntensity: new blur intensity value
+     * @param  { Object } customAnimationOptions: default jQuery animate options
+     */
+
+    this.animate = function(newIntensity, customAnimationOptions) {
+      // control the new blur intensity checking if it's a valid value
+      if (typeof newIntensity !== 'number') {
+        throw (typeof newIntensity + ' is not a valid number to animate the blur');
+      } else if (newIntensity < 0) {
+        throw ('I can animate only positive numbers');
+      }
+      // create a new jQuery deferred instance
+      var dfr = new $.Deferred();
+
+      // kill the previous animation
+      if (_animation) {
+        _animation.stop(true, true);
+      }
+
+      // trigger the animation using the jQuery Animation class
+      _animation = new $.Animation(options, {
+        intensity: newIntensity
+      }, $.extend(options.animationOptions, customAnimationOptions))
+        .progress($.proxy(this.blur, this))
+        .done(dfr.resolve);
+
+      // return the animation deferred promise
+      return dfr.promise();
+    };
+
+    /**
+     *
+     * Unblur the DOM element
+     *
+     */
+    this.unblur = function() {
+      // set the DOM filter property to none
+      this.$elm.css(_cssFilterProp, 'none');
+      _blurred = false;
+      return this;
+    };
+
+    /**
+     *
+     * Trigger alternatively the @blur and @unblur methods
+     *
+     */
+
+    this.toggleblur = function() {
+      if (_blurred) {
+        this.unblur();
+      } else {
+        this.blur();
+      }
+      return this;
+    };
+    /**
+     * Destroy the Vague.js instance removing also the svg filter injected into the DOM
+     */
+    this.destroy = function() {
+      // do we need to remove the svg filter?
+      if (_support.svgfilters) {
+        $('filter#blur-effect-id-' + _filterId).parent().remove();
+      }
+
+      this.unblur();
+
+      // clear all the property stored into this Vague.js instance
+      for (var prop in this) {
+        delete this[prop];
+      }
+
+      return this;
+    };
+    // init the plugin
+    return this.init();
+  };
+
+  // export the plugin as a jQuery function
+  $.fn.Vague = function(options) {
+    return new Vague(this, options);
+  };
+
+}(window, document, jQuery));
+
  (function(i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
             i[r] = i[r] || function() {
@@ -26,8 +340,44 @@ window.Modernizr=function(e,t,n){function r(e){b.cssText=e}function o(e,t){retur
         ga('create', 'UA-XXXXX-X', 'auto');
         ga('send', 'pageview');
 $(document).ready(function(){
+
+   $.fn.clickToggle = function(func1, func2) {
+        var funcs = [func1, func2];
+        this.data('toggleclicked', 0);
+        this.click(function() {
+            var data = $(this).data();
+            var tc = data.toggleclicked;
+            $.proxy(funcs[tc], this)();
+            data.toggleclicked = (tc + 1) % 2;
+        });
+        return this;
+    };
+
   $('.plus').click(function(){
     $('.biografia').toggleClass('toggle-bio');
+    $('body').toggleClass('block-body');
     $(this).toggleClass('toggle-plus');
-  });
+    
+  }).clickToggle(function() {   
+    vague.blur();
+},
+function() {
+    vague.unblur();
 });
+
+
+});
+
+var vague = $('#contenedor').Vague({
+	intensity:      3,      // Blur Intensity
+	forceSVGUrl:    false,   // Force absolute path to the SVG filter,
+	// default animation options
+    animationOptions: {
+      duration: 1000,
+      easing: 'linear' // here you can use also custom jQuery easing functions
+    }
+});
+
+
+
+   

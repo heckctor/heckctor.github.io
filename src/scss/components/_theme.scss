@@ -200,6 +200,9 @@ body{
     transition: all ease-out .5s;
     background: $blanco;
     padding: 5px;
+    @include to(m){
+        @include sombra;
+    }
 }
 .toggle-bio{
     top:-100vh;

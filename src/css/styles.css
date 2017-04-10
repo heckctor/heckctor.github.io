@@ -515,6 +515,10 @@ h1 {
   transition: all ease-out .5s;
   background: white;
   padding: 5px; }
+  @media screen and (max-width: 639px) {
+    .plus {
+      -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5); } }
 
 .toggle-bio {
   top: -100vh;

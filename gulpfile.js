@@ -107,6 +107,7 @@ gulp.task('images', function() {
 var jsFiles = [
   //Librerias
   'src/js/lib/jquery-2.1.4.min.js', 
+  'src/js/lib/particles.js', 
   'src/js/lib/modernizr.js', 
   'src/js/lib/prefixfree.min.js', 
   'src/js/lib/Vague.js', 
